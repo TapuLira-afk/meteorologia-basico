@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scripts/script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Lottie (with lottie-web) -->
+    <script>
+        import lottie from 'lottie-web';
+        import clearDay from '@meteocons/lottie/fill/clear-day.json';
+
+        lottie.loadAnimation({
+            container: document.getElementById('icon'),
+            animationData: clearDay,
+            loop: true,
+            autoplay: true,
+        });
+    </script>
+    <title></title>
+</head>
+
+<body>
+    <h1 id="ciudad">Merida</h1>
+    <h2 id="titulo-tiempo"></h2>
+    <h3 id="temperatura"></h3>
+    <h3 id="humedad"></h3>
+    <h3 id="viento"></h3>
+    <h3 id="fecha"></h3>
+    <h3 id="hora"></h3>
+
+
+    <!-- <p id="latitude" hidden>38.91611</p>
+    <p id="longitude" hidden>-6.34366</p> -->
+    <p id="current" hidden>temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code</p>
+    <p id="timezone" hidden>auto</p>
+    <p id="forecast_days" hidden>1</p>
+    <select id="selector-ciudad">
+        <option value="merida" data-lat="38.91611" data-lon="-6.34366">Mérida</option>
+        <option value="madrid" data-lat="40.41650" data-lon="-3.70379">Madrid</option>
+        <option value="barcelona" data-lat="41.38740" data-lon="2.16860">Barcelona</option>
+    </select>
+    <p id="error" style="color: red;" hidden></p>
+    <p id="cargando" style="color: blue;" hidden>Cargando...</p>
+
+</body>
+
+</html>
