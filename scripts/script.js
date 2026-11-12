@@ -1,34 +1,34 @@
 const api = "https://api.open-meteo.com/v1/forecast"
 const weatherCodesEN = [
-    { code: 0, description: "Clear sky" },
-    { code: 1, description: "Mainly clear" },
-    { code: 2, description: "Partly cloudy" },
-    { code: 3, description: "Overcast" },
-    { code: 45, description: "Fog" },
-    { code: 48, description: "Depositing rime fog" },
-    { code: 51, description: "Light drizzle" },
-    { code: 53, description: "Moderate drizzle" },
-    { code: 55, description: "Dense drizzle" },
-    { code: 56, description: "Light freezing drizzle" },
-    { code: 57, description: "Dense freezing drizzle" },
-    { code: 61, description: "Slight rain" },
-    { code: 63, description: "Moderate rain" },
-    { code: 65, description: "Heavy rain" },
-    { code: 66, description: "Light freezing rain" },
-    { code: 67, description: "Heavy freezing rain" },
-    { code: 71, description: "Slight snowfall" },
-    { code: 73, description: "Moderate snowfall" },
-    { code: 75, description: "Heavy snowfall" },
-    { code: 77, description: "Snow grains" },
-    { code: 80, description: "Slight rain showers" },
-    { code: 81, description: "Moderate rain showers" },
-    { code: 82, description: "Violent rain showers" },
-    { code: 85, description: "Slight snow showers" },
-    { code: 86, description: "Heavy snow showers" },
-    { code: 95, description: "Thunderstorm" },
-    { code: 96, description: "Thunderstorm with slight hail" },
-    { code: 97, description: "Heavy thunderstorm" },
-    { code: 99, description: "Thunderstorm with heavy hail" }
+    { code: 0, description: "Clear sky", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/clear-day.svg" },
+    { code: 1, description: "Mainly clear", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/partly-cloudy-day.svg" },
+    { code: 2, description: "Partly cloudy", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/partly-cloudy-day.svg" },
+    { code: 3, description: "Overcast", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/overcast.svg" },
+    { code: 45, description: "Fog", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/fog.svg" },
+    { code: 48, description: "Depositing rime fog", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/fog.svg" },
+    { code: 51, description: "Light drizzle", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/drizzle.svg" },
+    { code: 53, description: "Moderate drizzle", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/drizzle.svg" },
+    { code: 55, description: "Dense drizzle", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/drizzle.svg" },
+    { code: 56, description: "Light freezing drizzle", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/sleet.svg" },
+    { code: 57, description: "Dense freezing drizzle", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/sleet.svg" },
+    { code: 61, description: "Slight rain", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 63, description: "Moderate rain", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 65, description: "Heavy rain", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 66, description: "Light freezing rain", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/sleet.svg" },
+    { code: 67, description: "Heavy freezing rain", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/sleet.svg" },
+    { code: 71, description: "Slight snowfall", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 73, description: "Moderate snowfall", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 75, description: "Heavy snowfall", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 77, description: "Snow grains", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 80, description: "Slight rain showers", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 81, description: "Moderate rain showers", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 82, description: "Violent rain showers", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/rain.svg" },
+    { code: 85, description: "Slight snow showers", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 86, description: "Heavy snow showers", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/snow.svg" },
+    { code: 95, description: "Thunderstorm", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/thunderstorms.svg" },
+    { code: 96, description: "Thunderstorm with slight hail", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/thunderstorms-extreme.svg" },
+    { code: 97, description: "Heavy thunderstorm", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/thunderstorms-extreme.svg" },
+    { code: 99, description: "Thunderstorm with heavy hail", iconUrl: "https://cdn.meteocons.com/latest/svg/fill/thunderstorms-extreme.svg" }
 ];
 
 const weatherCodesES = [
@@ -62,18 +62,45 @@ const weatherCodesES = [
     { code: 97, description: "Tormenta intensa" },
     { code: 99, description: "Tormenta con granizo intenso" }
 ];
+const ciudad = document.querySelector("#ciudad")
 const cargando = document.querySelector("#cargando")
-const tiempo = document.querySelector("#titulo-tiempo")
-const latitude = document.querySelector("#latitude")
 const error = document.querySelector("#error")
-const longitude = document.querySelector("#longitude")
 const current = document.querySelector("#current")
 const timezone = document.querySelector("#timezone")
 const forecastDays = document.querySelector("#forecast_days")
+const selectorCiudad = document.querySelector("#selector-ciudad")
+const tituloTiempo = document.querySelector("#titulo-tiempo")
+const humedad = document.querySelector("#humedad")
+const viento = document.querySelector("#viento")
+const semana = document.querySelector("#semana")
 
 async function llamarApi(latitude, longitude, weather_code, timezone, forecast_days) {
     onOffElementCargando(false)
     const apiConsulta = `${api}?latitude=${latitude}&longitude=${longitude}&current=${weather_code}&timezone=${timezone}&forecast_days=${forecast_days}`
+    console.log(apiConsulta)
+    try {
+        const response = await fetch(apiConsulta);
+
+        if (!response.ok) {
+            const error_ = new Error(response.statusText);
+            error_.status = response.status
+            throw error_
+        }
+
+        const data = await response.json()
+
+        return data
+    } catch (error_) {
+        console.error('Hubo un problema con la solicitud:', error_);
+        onOffElementError(false, error_)
+    } finally {
+        onOffElementCargando(true)
+    }
+}
+
+async function llamarApiDaily(latitude, longitude, weather_code, timezone, forecast_days) {
+    onOffElementCargando(false)
+    const apiConsulta = `${api}?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code&timezone=${timezone}&forecast_days=${forecast_days}`
     console.log(apiConsulta)
     try {
         const response = await fetch(apiConsulta);
@@ -110,10 +137,46 @@ function onOffElementError(yesno, error) {
 }
 
 window.addEventListener('load', () => {
-    console.log()
-    void llamarApi(latitude.textContent.trim(), longitude.textContent.trim(), current.textContent.trim(), timezone.textContent.trim(), forecastDays.textContent.trim())
-        .then(data => tiempo.textContent = traducirWeatherCode(data.current.weather_code));
+    const primeraOpcion = selectorCiudad.options[0]
+    ciudad.textContent = primeraOpcion.text
+    let latitud = primeraOpcion.dataset.lat;
+    let logintud = primeraOpcion.dataset.lon;
+    
+    void llamarApi(latitud,
+        logintud,
+        current.textContent.trim(),
+        timezone.textContent.trim(),
+        forecastDays.textContent.trim())
+        .then(data => {
+            tituloTiempo.textContent = traducirWeatherCode(data.current.weather_code)
+            humedad.textContent = "Humedad: " + data.current.relative_humidity_2m + data.current_units.relative_humidity_2m
+            viento.textContent = "Viento: " + data.current.wind_speed_10m + data.current_units.wind_speed_10m
+        });
+
+    let days = llamarApiDaily(latitud,
+        logintud,
+        current.textContent.trim(),
+        timezone.textContent.trim(),
+        forecastDays.textContent.trim())
+
+    
+
+    semana.querySelectorAll(".icon").forEach(element => {
+        console.log(days)
+
+        void days.then(data => {
+            data.daily.weather_code.forEach(dia => {
+                console.log(dia)
+                let tiempo = weatherCodesEN.find(w => w.code == dia)
+                element.src = tiempo.iconUrl
+                element.setAttribute("alt", tiempo.description)
+                console.log(element)
+            });
+        })
+    });
 });
+
+
 
 function traducirWeatherCode(weather_code) {
     const code = weatherCodesEN.filter(w => w.description === weather_code)
@@ -121,5 +184,3 @@ function traducirWeatherCode(weather_code) {
 
     return tiempo.description
 }
-
-
